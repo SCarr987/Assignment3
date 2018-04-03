@@ -1,6 +1,5 @@
 # run_analysis.R  Coursera Data Science CH3 Project Wearable computing
 
-setwd("C:/Users/SusanToshiba/Documents/R/CourseraDataScience/Project-CH3")
 # setwd() # to your working directory
 
 # Background information http://www.insideactivitytracking.com/data-science-activity-tracking-and-the-battle-for-the-worlds-top-sports-brand/ 
@@ -14,10 +13,10 @@ setwd("C:/Users/SusanToshiba/Documents/R/CourseraDataScience/Project-CH3")
 # 4. Appropriately labels the data set with descriptive variable names.
 # 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
  
-# download data from zipped file  
-fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-if(!file.exists("./data")){dir.create("./data")}
-if(!file.exists("./data/temp.zip")){download.file(fileUrl,destfile="./data/temp.zip")}
+# uncomment the next 3 lines if you need to download data from zipped file 
+# fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+# if(!file.exists("./data")){dir.create("./data")}
+# if(!file.exists("./data/temp.zip")){download.file(fileUrl,destfile="./data/temp.zip")}
 #######  extract zip into a directory called UCI-HAR-Dataset
 
 
@@ -86,5 +85,6 @@ dataAve <- dataSet %>%
     summarise_all(funs(mean))
 
 # write the dataset to a file
-fwrite(dataAve, file = "tidyData.csv")
+# fwrite(dataAve, file = "tidyData.csv")
+write.table(dataAve, "tidyData.txt", row.names = FALSE)  # this is slower than the above but required by assignment
 # View(dataAve)
